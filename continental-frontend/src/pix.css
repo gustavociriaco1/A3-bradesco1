@@ -1,0 +1,82 @@
+.pix-container {
+  background-color: #4c4c4c;
+  height: 100vh;
+  color: #d3b46f;
+}
+
+.pix-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: #3a3a3a;
+}
+
+.pix-logo {
+  font-family: "Cinzel", serif;
+  font-size: 1.8rem;
+}
+
+.pix-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85%;
+}
+
+.pix-box {
+  background-color: #3a3a3a;
+  border: 1px solid #d3b46f;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 60%;
+  max-width: 500px;
+}
+
+.pix-search {
+  display: flex;
+  align-items: center;
+  background: #e0e0e0;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.pix-search input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  color: black;
+}
+
+.pix-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1.5rem;
+}
+
+.btn-yellow {
+  background-color: #d3b46f;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #3a3a3a;
+  font-family: "Cinzel", serif;
+  transition: all 0.2s ease;
+}
+
+.btn-yellow:hover {
+  background-color: #e8d9a5;
+}
+
+.pix-lists {
+  border-top: 1px solid #d3b46f;
+  padding-top: 1rem;
+}
+
+.pix-section {
+  border-bottom: 1px solid #d3b46f;
+  padding: 0.6rem 0;
+}
