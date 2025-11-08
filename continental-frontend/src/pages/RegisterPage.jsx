@@ -18,6 +18,18 @@ export default function RegisterPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleRegister = async () => {
+    // Simulação de registro para desenvolvimento
+    console.log("Tentando registrar com:", form);
+
+    // Simula um atraso de rede
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    // Simula uma resposta de sucesso
+    alert("Conta criada com sucesso! (Modo de desenvolvimento)");
+    navigate("/"); // Navega para a página de login após o "registro"
+
+    /*
+    // CÓDIGO ORIGINAL (descomente quando a API estiver pronta)
     try {
       await axios.post("http://localhost:8080/api/register", form);
       alert("Conta criada com sucesso!");
@@ -29,6 +41,7 @@ export default function RegisterPage() {
         "Erro ao registrar";
       alert(msg);
     }
+    */
   };
 
   const left = (

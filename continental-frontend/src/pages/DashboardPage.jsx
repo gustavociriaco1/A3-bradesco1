@@ -36,15 +36,12 @@ const DashboardPage = () => {
             <div className="circle">
               <RiPixFill size={28} />
             </div>
-            <p>PIX</p>
+            <p>Consulta</p>
           </div>
+
           <div className="action-item">
             <div className="circle"></div>
-            <p>UDC</p>
-          </div>
-          <div className="action-item">
-            <div className="circle"></div>
-            <p>UDC</p>
+            <p>Denuncia</p>
           </div>
         </div>
       </main>
