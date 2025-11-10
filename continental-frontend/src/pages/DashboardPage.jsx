@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../dashboard.css";
-import { FaSearch, FaUserCircle } from "react-icons/fa";
+import { FaSearch, FaUserCircle, FaBullhorn } from "react-icons/fa";
 import { RiPixFill } from "react-icons/ri";
 
 const DashboardPage = () => {
@@ -39,8 +39,10 @@ const DashboardPage = () => {
             <p>Consulta</p>
           </div>
 
-          <div className="action-item">
-            <div className="circle"></div>
+           <div className="action-item" onClick={() => navigate("/denuncia")}>
+            <div className="circle">
+              <FaBullhorn size={28} />
+            </div>
             <p>Denuncia</p>
           </div>
         </div>
