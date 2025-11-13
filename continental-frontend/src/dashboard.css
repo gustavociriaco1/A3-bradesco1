@@ -10,30 +10,33 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
-  background-color: #3a3a3a;
+  padding: 1rem 2rem;
+  background-color: #1e1e1e; /* Cor de fundo do header, ajuste se necessário */
+}
+
+.user-info,
+.header-right-placeholder {
+  flex: 1; /* Faz com que ambos ocupem a mesma quantidade de espaço */
 }
 
 .logo {
-  font-family: "Cinzel", serif;
-  font-size: 1.8rem;
-  color: #d3b46f;
-}
-
-.user-info p {
+  flex: 1; /* Ocupa o espaço central */
+  text-align: center; /* Centraliza o texto do logo */
+  color: var(--gold);
   margin: 0;
-  font-size: 0.9rem;
-  color: #e8d9a5;
+  font-size: 2rem;
 }
-
 .profile-icon {
   font-size: 2rem;
   color: #d3b46f;
 }
 
 .dashboard-main {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza todos os filhos diretos horizontalmente */
   padding-top: 4rem;
+  gap: 1rem; /* Adiciona um espaçamento entre os elementos */
 }
 
 .dashboard-title {
@@ -80,7 +83,7 @@
 }
 
 .circle {
-  background: #f0f0f0;
+  background: #dd8901;
   width: 70px;
   height: 70px;
   border-radius: 50%;

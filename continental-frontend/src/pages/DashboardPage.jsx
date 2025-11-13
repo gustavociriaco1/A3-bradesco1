@@ -1,8 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../dashboard.css";
-import { FaSearch, FaUserCircle, FaBullhorn } from "react-icons/fa";
-import { RiPixFill } from "react-icons/ri";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import PixIcon from "@mui/icons-material/Pix";
+import CampaignIcon from "@mui/icons-material/Campaign";
 
 const DashboardPage = () => {
   const navigate = useNavigate();
@@ -21,27 +22,22 @@ const DashboardPage = () => {
           </p>
         </div>
         <h1 className="logo">Continental</h1>
-        <FaUserCircle className="profile-icon" />
+        <div className="header-right-placeholder"></div>
       </header>
-
       <main className="dashboard-main">
         <h2 className="dashboard-title">O que deseja fazer hoje?</h2>
-        <div className="search-box">
-          <FaSearch className="search-icon" />
-          <input type="text" placeholder="Pesquisar..." />
-        </div>
 
         <div className="actions">
           <div className="action-item" onClick={() => navigate("/pix")}>
             <div className="circle">
-              <RiPixFill size={28} />
+              <PixIcon sx={{ fontSize: 32, color: "#32BCAD" }} />
             </div>
             <p>Consulta</p>
           </div>
 
-           <div className="action-item" onClick={() => navigate("/denuncia")}>
+          <div className="action-item" onClick={() => navigate("/denuncia")}>
             <div className="circle">
-              <FaBullhorn size={28} />
+              <CampaignIcon sx={{ fontSize: 32, color: "#E74C3C" }} />
             </div>
             <p>Denuncia</p>
           </div>

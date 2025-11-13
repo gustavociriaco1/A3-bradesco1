@@ -146,4 +146,15 @@ input[type="date"] {
   .right-content {
     width: 100%;
   }
+  /* Estilos para a página de denúncia */
+  .denuncia-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--bg); /* Usa a cor de fundo padrão do app */
+    padding: 20px;
+    box-sizing: border-box;
+  }
 }
