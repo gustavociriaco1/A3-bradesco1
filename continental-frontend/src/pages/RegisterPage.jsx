@@ -6,9 +6,8 @@ import "../auth.css";
 
 export default function RegisterPage() {
   const [form, setForm] = useState({
-    nome: "",
+    nomeCompleto: "",
     cpf: "",
-
     email: "",
     senha: "",
   });
