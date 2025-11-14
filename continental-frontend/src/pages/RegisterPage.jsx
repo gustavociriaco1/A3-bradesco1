@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
-import { register } from "../Services/userApi";
+
 import "../auth.css";
 
 export default function RegisterPage() {
@@ -16,28 +16,32 @@ export default function RegisterPage() {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleRegister = async () => {
-    // Validação para garantir que todos os campos estão preenchidos
-    for (const key in form) {
-      if (!form[key]) {
-        alert(`Por favor, preencha o campo: ${key}`);
-        return;
-      }
-    }
+  const handleRegister = async (event) => {
+    event.preventDefault();
+    const { nomeCompleto, cpf, email, senha } = form;
+
+    const dados = {
+      nomeCompleto, // Alterado para "nomeCompleto"
+      cpf,
+      email,
+      senha,
+    };
+    console.log("Enviando para o backend:", dados);
 
     try {
-      // Chama a função de registro da API
-      const response = await register(form);
-      console.log("Resposta do registro:", response);
-      alert("Conta criada com sucesso! Você será redirecionado para o login.");
-      navigate("/"); // Navega para a página de login
-    } catch (error) {
-      // Exibe uma mensagem de erro mais específica se disponível
-      const errorMessage =
-        error.response?.data?.message ||
-        "Erro ao criar conta. Tente novamente.";
-      console.error("Erro no registro:", error);
-      alert(errorMessage);
+      const response = await fetch("http://localhost:8080/auth/cadastro", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dados),
+      });
+
+      const texto = await response.text();
+      console.log("Resposta do backend:", texto);
+      alert(texto);
+    } catch (err) {
+      console.error("Erro ao chamar backend:", err);
     }
   };
   return (
@@ -54,8 +58,8 @@ export default function RegisterPage() {
           margin="normal"
           required
           fullWidth
-          id="nome"
-          name="nome"
+          id="nomeCompleto  "
+          name="nomeCompleto"
           placeholder="Nome Completo"
           value={form.nomeCompleto}
           onChange={handleChange}
