@@ -57,7 +57,7 @@ export default function RegisterPage() {
           id="nome"
           name="nome"
           placeholder="Nome Completo"
-          value={form.nome}
+          value={form.nomeCompleto}
           onChange={handleChange}
           sx={{ backgroundColor: "white", borderRadius: 1 }}
         />
