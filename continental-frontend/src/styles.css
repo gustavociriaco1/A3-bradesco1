@@ -7,6 +7,7 @@
   --gold: #d4af37;
   --input-bg: rgba(255, 255, 255, 0.06);
   --radius: 12px;
+  --blue: #007bff; /* ou a cor que desejar */
 }
 
 * {

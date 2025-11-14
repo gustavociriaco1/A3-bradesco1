@@ -1,0 +1,67 @@
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  /* As propriedades de background foram movidas para o estilo inline do componente */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.auth-panel {
+  background-color: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+}
+
+.auth-panel .panel-title {
+  margin-bottom: 24px;
+  color: #333;
+  font-size: 24px;
+}
+
+.auth-panel .cta {
+  margin-top: 16px;
+  padding: 10px;
+  width: 100%;
+  background-color: var(--gold);
+  color: var(--bg);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.auth-panel .cta:hover {
+  background-color: var(--gold-dark);
+}
+
+.auth-panel .switch-auth {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.auth-panel .switch-auth-link {
+  color: black !important;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.auth-panel .switch-auth-link:hover {
+  text-decoration: none;
+}
+.switch-auth {
+  color: rgba(38, 9, 143, 0.404);
+}
+.denunciadas-title {
+  color: var(--blue) !important;
+  margin-top: 1rem;
+}

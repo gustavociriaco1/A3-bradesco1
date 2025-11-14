@@ -1,94 +1,138 @@
-.dashboard-container {
-  background-color: #4c4c4c;
-  height: 100vh;
-  color: #d3b46f;
-  display: flex;
-  flex-direction: column;
-}
-
 .dashboard-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #1e1e1e; /* Cor de fundo do header, ajuste se necessário */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.3
+  ); /* Fundo semi-transparente para destacar */
+  color: white;
+  width: 100%;
+  box-sizing: border-box;
 }
-
-.user-info,
-.header-right-placeholder {
-  flex: 1; /* Faz com que ambos ocupem a mesma quantidade de espaço */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .logo {
-  flex: 1; /* Ocupa o espaço central */
-  text-align: center; /* Centraliza o texto do logo */
-  color: var(--gold);
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--black);
   margin: 0;
-  font-size: 2rem;
 }
-.profile-icon {
-  font-size: 2rem;
-  color: #d3b46f;
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  text-align: right;
+}
+
+.user-greeting {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.user-balance,
+.balance-amount {
+  margin: 0;
 }
 
 .dashboard-main {
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centraliza todos os filhos diretos horizontalmente */
-  padding-top: 4rem;
-  gap: 1rem; /* Adiciona um espaçamento entre os elementos */
+  align-items: center;
+  width: 100%;
+  max-width: 800px; /* Limita a largura do conteúdo principal */
+  margin: 0 auto;
+}
+
+.balance-card {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.user-balance {
+  font-size: 1rem;
+  color: #555;
+}
+
+.balance-amount {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-top: 0.5rem;
 }
 
 .dashboard-title {
-  font-family: "Cinzel", serif;
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  color: #d3b46f;
-}
-
-.search-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1rem auto;
-  background: #e0e0e0;
-  border-radius: 10px;
-  padding: 0.4rem 1rem;
-  width: 50%;
-  max-width: 400px;
-}
-
-.search-icon {
-  color: #3a3a3a;
-  margin-right: 0.5rem;
-}
-
-.search-box input {
-  border: none;
-  outline: none;
-  background: transparent;
-  width: 100%;
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .actions {
   display: flex;
+  gap: 2rem;
   justify-content: center;
-  gap: 3rem;
-  margin-top: 3rem;
 }
 
 .action-item {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 1.5rem;
+  border-radius: 12px;
+  width: 140px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.circle {
-  background: #dd8901;
-  width: 70px;
-  height: 70px;
+.action-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.action-item .circle {
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  margin: 0 auto 0.5rem auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 1rem;
+  background-color: #0b0b0b44;
+}
+
+.action-item p {
+  margin: 0;
+  font-weight: 600;
+  color: #333;
+}
+.action-item .circle svg {
+  color: black !important;
 }

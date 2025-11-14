@@ -1,6 +1,6 @@
 import { TextField, Button } from "@mui/material";
 import React, { useState } from "react";
-import "../denuncia.css";
+import "../auth.css";
 
 const DenunciaPage = () => {
   const [scammerKey, setScammerKey] = useState("");
@@ -40,9 +40,14 @@ const DenunciaPage = () => {
   };
 
   return (
-    <div className="denuncia-page-container">
-      <div className="form-container">
-        <h2>Registrar Denúncia</h2>
+    <div
+      className="auth-container"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL + "/bradesco.png"})`,
+      }}
+    >
+      <div className="auth-panel">
+        <h2 className="panel-title">Registrar Denúncia</h2>
 
         <TextField
           margin="normal"
@@ -118,14 +123,13 @@ const DenunciaPage = () => {
           }}
         />
         <Button
-          type="submit"
           fullWidth
           variant="contained"
           sx={{
             mt: 3,
             mb: 2,
-            backgroundColor: "var(--gold)",
-            color: "var(--bg)",
+            backgroundcolor: "blue",
+            color: "var(--white)",
           }}
           onClick={handleSubmit}
         >

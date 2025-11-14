@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import "../pix.css";
-import { FaSearch, FaUserCircle } from "react-icons/fa";
-// import { verifyPixKey } from "../services/pixApi"; // Descomente quando a API estiver pronta
+import { TextField, Button, InputAdornment } from "@mui/material";
+import { FaSearch } from "react-icons/fa";
+import "../auth.css"; // Importa o CSS de autenticação
 
 const PixPage = () => {
   const [pixKey, setPixKey] = useState("");
   const [verificationResult, setVerificationResult] = useState(null);
+
   const handleVerifyKey = async () => {
     if (!pixKey) {
       setVerificationResult({
@@ -31,60 +32,68 @@ const PixPage = () => {
       });
     }
     // --- FIM DA SIMULAÇÃO ---
-
-    /*
-    // CÓDIGO ORIGINAL (descomente quando a API estiver pronta)
-    try {
-      const data = await verifyPixKey(pixKey);
-      setVerificationResult({ message: data.message, status: "success" });
-    } catch (err) {
-      const msg =
-        err?.response?.data?.error ||
-        err?.response?.data?.message ||
-        "Erro ao verificar a chave";
-      setVerificationResult({ message: msg, status: "error" });
-    }
-    */
   };
 
   return (
-    <div className="pix-container">
-      <header className="pix-header">
-        <h1 className="pix-logo">PIX</h1>
-        <FaUserCircle className="profile-icon" />
-      </header>
+    <div
+      className="auth-container"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL + "/bradesco.png"})`,
+      }}
+    >
+      <div className="auth-panel">
+        <h2 className="panel-title">Área PIX</h2>
 
-      <main className="pix-main">
-        <div className="pix-box">
-          <div className="pix-search">
-            <FaSearch className="search-icon" />
-            <input
-              type="text"
-              placeholder="Chave-PIX"
-              value={pixKey}
-              onChange={(e) => setPixKey(e.target.value)}
-            />
-          </div>
-          <div className="pix-buttons">
-            <button className="btn-yellow" onClick={handleVerifyKey}>
-              Verificar Chave
-            </button>
-          </div>
+        <TextField
+          margin="normal"
+          fullWidth
+          id="pixKey"
+          placeholder="Digite a Chave-PIX"
+          name="pixKey"
+          value={pixKey}
+          onChange={(e) => setPixKey(e.target.value)}
+          sx={{ backgroundColor: "white", borderRadius: 1 }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <FaSearch />
+              </InputAdornment>
+            ),
+          }}
+        />
 
-          {verificationResult && (
-            <div
-              className={`verification-message ${verificationResult.status}`}
-            >
-              {verificationResult.message}
-            </div>
-          )}
+        <Button
+          fullWidth
+          variant="contained"
+          sx={{
+            mt: 3,
+            mb: 2,
+            backgroundcolor: "blue",
+            color: "var(--white)",
+          }}
+          onClick={handleVerifyKey}
+        >
+          Verificar Chave
+        </Button>
 
-          <div className="pix-lists">
-            <div className="pix-section">Chaves Favoritas:</div>
-            <div className="pix-section">Chaves Denunciadas:</div>
+        {verificationResult && (
+          <div
+            style={{
+              marginTop: "1rem",
+              color: verificationResult.status === "error" ? "red" : "green",
+              textAlign: "center",
+            }}
+          >
+            {verificationResult.message}
           </div>
-        </div>
-      </main>
+        )}
+
+        <h3 className="denunciadas-title">Chaves Denunciadas:</h3>
+        {/* Aqui você pode listar as chaves denunciadas */}
+        <p style={{ color: "white", fontSize: "0.9rem" }}>
+          Nenhuma chave denunciada.
+        </p>
+      </div>
     </div>
   );
 };
