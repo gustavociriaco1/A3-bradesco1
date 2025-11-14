@@ -17,8 +17,8 @@ export default function RegisterPage() {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleRegister = () => {
-    // Validação simples para garantir que todos os campos estão preenchidos
+  const handleRegister = async () => {
+    // Validação para garantir que todos os campos estão preenchidos
     for (const key in form) {
       if (!form[key]) {
         alert(`Por favor, preencha o campo: ${key}`);
@@ -26,10 +26,20 @@ export default function RegisterPage() {
       }
     }
 
-    // Simula o sucesso do registro
-    console.log("Dados do registro (simulado):", form);
-    alert("Conta criada com sucesso! Você será redirecionado para o login.");
-    navigate("/"); // Navega para a página de login
+    try {
+      // Chama a função de registro da API
+      const response = await register(form);
+      console.log("Resposta do registro:", response);
+      alert("Conta criada com sucesso! Você será redirecionado para o login.");
+      navigate("/"); // Navega para a página de login
+    } catch (error) {
+      // Exibe uma mensagem de erro mais específica se disponível
+      const errorMessage =
+        error.response?.data?.message ||
+        "Erro ao criar conta. Tente novamente.";
+      console.error("Erro no registro:", error);
+      alert(errorMessage);
+    }
   };
   return (
     <div
