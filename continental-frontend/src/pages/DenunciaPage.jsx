@@ -1,6 +1,7 @@
 import { TextField, Button } from "@mui/material";
 import React, { useState } from "react";
 import "../auth.css";
+import { registerDenuncia } from "../Services/userApi";
 
 const DenunciaPage = () => {
   const [scammerKey, setScammerKey] = useState("");
@@ -9,36 +10,48 @@ const DenunciaPage = () => {
   const [description, setDescription] = useState("");
   const [amountLost, setAmountLost] = useState("");
   const [dateOfIncident, setDateOfIncident] = useState("");
+  const [Name, setName] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validação de campos
     const reportData = {
       scammer_key: scammerKey,
       scam_type: scamType,
+      Name: Name,
       bank,
       description,
       amount_lost: amountLost,
       date_of_incident: dateOfIncident,
     };
 
+    for (const key in reportData) {
+      if (!reportData[key]) {
+        alert(`Por favor, preencha todos os campos.`);
+        return;
+      }
+    }
+
     try {
-      // Simulação: Exibe os dados no console e um alerta para o usuário
-      console.log("Dados da denúncia a serem enviados:", reportData);
-      alert("Simulação: Denúncia registrada com sucesso!");
+      await registerDenuncia(reportData);
+      alert("Denúncia registrada com sucesso!");
 
       // Limpa o formulário
       setScammerKey("");
       setScamType("");
+      setName("");
       setBank("");
       setDescription("");
       setAmountLost("");
       setDateOfIncident("");
     } catch (error) {
+      const errorMessage =
+        error.response?.data?.message || "Falha ao registrar denúncia.";
       console.error("Erro ao registrar denúncia:", error);
-      alert("Falha ao registrar denúncia.");
+      alert(errorMessage);
     }
   };
-
   return (
     <div
       className="auth-container"
@@ -75,8 +88,19 @@ const DenunciaPage = () => {
           margin="normal"
           required
           fullWidth
+          id="Name"
+          placeholder="Nome do Golpista"
+          name="Name"
+          value={Name}
+          onChange={(e) => setName(e.target.value)}
+          sx={{ backgroundColor: "white", borderRadius: 1 }}
+        />
+        <TextField
+          margin="normal"
+          required
+          fullWidth
           id="bank"
-          placeholder="Qual o banco do golpista?"
+          placeholder="Qual o banco ?"
           name="bank"
           value={bank}
           onChange={(e) => setBank(e.target.value)}

@@ -42,7 +42,7 @@ const PixPage = () => {
       }}
     >
       <div className="auth-panel">
-        <h2 className="panel-title">Área PIX</h2>
+        <h2 className="panel-title">Consulta de denúncias</h2>
 
         <TextField
           margin="normal"

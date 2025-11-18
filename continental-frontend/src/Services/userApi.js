@@ -31,3 +31,18 @@ export const verifyPixKey = async (key) => {
   const response = await api.post("/pix/verify", { key });
   return response.data;
 };
+/**
+ * Registra uma nova denúncia.
+ * @param {object} denunciaData - Os dados do formulário de denúncia.
+ * @returns {Promise<object>} A resposta da API.
+ */
+export const registerDenuncia = async (denunciaData) => {
+  try {
+    const response = await api.post("/denúncias", denunciaData);
+    return response.data;
+  } catch (error) {
+    // Loga o erro para depuração e relança para que o componente possa tratá-lo
+    console.error("Erro ao registrar denúncia no serviço:", error);
+    throw error;
+  }
+};
