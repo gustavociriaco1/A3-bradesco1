@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TextField, Button } from "@mui/material";
-// import { login } from "../Services/userApi";
+import { login } from "../Services/userApi";
 import "../auth.css"; // Importe o novo CSS
 
 export default function LoginPage() {
@@ -9,14 +9,20 @@ export default function LoginPage() {
   const [senha, setSenha] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!email || !senha) {
       alert("Por favor, preencha o email e a senha.");
       return;
     }
-    // Simula o login e redireciona
-    alert("Login realizado com sucesso!");
-    navigate("/dashboard");
+
+    try {
+      const response = await login(email, senha); // Chame a função login
+      console.log("Resposta do backend:", response);
+      alert("Login realizado com sucesso!");
+      navigate("/dashboard"); // Redirecione para a página de dashboard
+    } catch (err) {
+      console.error("Erro ao chamar backend:", err);
+    }
   };
 
   return (

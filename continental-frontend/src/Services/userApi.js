@@ -1,4 +1,4 @@
-import api from "./api";
+import api from "./api.js";
 
 /**
  * Realiza o login do usuário.
@@ -7,7 +7,7 @@ import api from "./api";
  * @returns {Promise<object>} Os dados da resposta, incluindo o token.
  */
 export const login = async (email, senha) => {
-  const response = await api.post("/login", { email, senha });
+  const response = await api.post("auth/login", { email, senha });
   return response.data;
 };
 
