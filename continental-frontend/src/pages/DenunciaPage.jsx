@@ -17,13 +17,13 @@ const DenunciaPage = () => {
 
     // Validação de campos
     const reportData = {
-      scammer_key: scammerKey,
-      scam_type: scamType,
-      Name: Name,
-      bank,
-      description,
-      amount_lost: amountLost,
-      date_of_incident: dateOfIncident,
+      chavePix: scammerKey,
+      tipoGolpe: scamType,
+      nomeGolpista: Name,
+      banco: bank,
+      descricao: description,
+      valorPerdido: amountLost,
+      dataDenuncia: dateOfIncident,
     };
 
     for (const key in reportData) {
