@@ -38,7 +38,7 @@ export const verifyPixKey = async (key) => {
  */
 export const registerDenuncia = async (denunciaData) => {
   try {
-    const response = await api.post("/denúncias", denunciaData);
+    const response = await api.post("/denuncias/criar", denunciaData);
     return response.data;
   } catch (error) {
     // Loga o erro para depuração e relança para que o componente possa tratá-lo
