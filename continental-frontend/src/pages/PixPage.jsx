@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { TextField, Button, InputAdornment } from "@mui/material";
 import { FaSearch } from "react-icons/fa";
 import "../auth.css"; // Importa o CSS de autenticação
-import { getPixKeyInfo } from "../Services/userApi"; // <-- ADICIONE ESTA LINHA
+import { getPixKeyInfo } from "../Services/userApi"; //
 
 const PixPage = () => {
   const [pixKey, setPixKey] = useState("");
   const [verificationResult, setVerificationResult] = useState(null);
+  const [denuncias, setDenuncias] = useState([]);
 
   const handleVerifyKey = async () => {
     if (!pixKey) {
@@ -101,11 +102,22 @@ const PixPage = () => {
           </div>
         )}
 
-        <h3 className="denunciadas-title">Chaves Denunciadas:</h3>
-        {/* Aqui você pode listar as chaves denunciadas */}
-        <p style={{ color: "white", fontSize: "0.9rem" }}>
-          Nenhuma chave denunciada.
-        </p>
+        {denuncias.length > 0 && (
+          <div className="denuncias-list">
+            <h3 className="denunciadas-title">Detalhes das Denúncias:</h3>
+            <ul>
+              {denuncias.map((denuncia, index) => (
+                <li
+                  key={index}
+                  style={{ color: "white", marginBottom: "0.5rem" }}
+                >
+                  {denuncia.motivo} - (
+                  {new Date(denuncia.data).toLocaleDateString()})
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
