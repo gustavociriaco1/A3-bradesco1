@@ -29,6 +29,15 @@ export const verifyPixKey = async (key) => {
   const response = await api.post("/pix/verify", { key });
   return response.data;
 };
+/**
+ * Busca informações de uma chave PIX na API.
+ * @param {string} chavePix - A chave PIX a ser consultada.
+ * @returns {Promise<object>} Os dados da resposta da API.
+ */
+export const getPixKeyInfo = async (chavePix) => {
+  const response = await api.get(`/chave/${chavePix}`);
+  return response.data;
+};
 
 /**
  * Registra denúncia (PRECISA DE TOKEN)

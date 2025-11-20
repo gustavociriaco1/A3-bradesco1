@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TextField, Button, InputAdornment } from "@mui/material";
 import { FaSearch } from "react-icons/fa";
 import "../auth.css"; // Importa o CSS de autenticação
+import { getPixKeyInfo } from "../Services/userApi"; // <-- ADICIONE ESTA LINHA
 
 const PixPage = () => {
   const [pixKey, setPixKey] = useState("");
@@ -15,23 +16,22 @@ const PixPage = () => {
       });
       return;
     }
-    // --- INÍCIO DA SIMULAÇÃO ---
-    console.log("Verificando chave:", pixKey);
-    await new Promise((resolve) => setTimeout(resolve, 500)); // Simula atraso de rede
 
-    // Simula uma resposta de sucesso ou erro
-    if (pixKey === "chave-valida@email.com") {
+    try {
+      // Chama a função da API para verificar a chave
+      const data = await getPixKeyInfo(pixKey);
+      // Assumindo que a resposta de sucesso contém o nome do destinatário
       setVerificationResult({
-        message: "Chave válida para: Usuário Exemplo",
+        message: `Chave válida para: ${data.nomeCompleto}`, // Ajuste 'data.nomeCompleto' conforme a resposta da sua API
         status: "success",
       });
-    } else {
+    } catch (error) {
+      console.error("Erro ao verificar chave PIX:", error);
       setVerificationResult({
         message: "Chave PIX não encontrada ou inválida.",
         status: "error",
       });
     }
-    // --- FIM DA SIMULAÇÃO ---
   };
 
   return (
