@@ -7,10 +7,19 @@ import api from "./api.js";
  * @returns {Promise<object>} Os dados da resposta, incluindo o token.
  */
 export const login = async (email, senha) => {
-  const response = await api.post("auth/login", { email, senha });
+  // Endpoint corrigido para "/auth/login"
+  const response = await api.post("/auth/login", { email, senha });
+
+  // Extrai o token do objeto de resposta
+  const { token } = response.data;
+
+  if (token) {
+    // Salva o token no navegador
+    localStorage.setItem("token", token);
+  }
+
   return response.data;
 };
-
 /**
  * Registra um novo usuário.
  * @param {object} userData - Os dados do formulário de registro.
@@ -38,6 +47,8 @@ export const verifyPixKey = async (key) => {
  */
 export const registerDenuncia = async (denunciaData) => {
   try {
+    // CORREÇÃO: Adicionado "/" no início do endpoint.
+    // O interceptor do Axios em `api.js` já adiciona o token automaticamente.
     const response = await api.post("/api/denuncias", denunciaData);
     return response.data;
   } catch (error) {
