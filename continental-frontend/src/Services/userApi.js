@@ -32,7 +32,7 @@ export const register = async (userData) => {
  * @returns {Promise<object>} Os dados da resposta da API.
  */
 export const getPixKeyInfo = async (chavePix) => {
-  const response = await api.get(`/chave/${chavePix}`);
+  const response = await api.get(`/api/denuncias/chave/{chavePix}`);
   return response.data;
 };
 
