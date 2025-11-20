@@ -25,10 +25,7 @@ export const register = async (userData) => {
 /**
  * Verificação de PIX
  */
-export const verifyPixKey = async (key) => {
-  const response = await api.post("/pix/verify", { key });
-  return response.data;
-};
+
 /**
  * Busca informações de uma chave PIX na API.
  * @param {string} chavePix - A chave PIX a ser consultada.
