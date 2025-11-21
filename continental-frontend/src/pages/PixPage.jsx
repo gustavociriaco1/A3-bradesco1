@@ -97,24 +97,6 @@ const PixPage = () => {
             {verificationResult.message}
           </div>
         )}
-
-        {denuncias && denuncias.length > 0 && (
-          <div>
-            <h3 className="denunciadas-title">Detalhes das Denúncias:</h3>
-            <ul>
-              {denuncias.map((denuncia, index) => (
-                <li
-                  key={index}
-                  style={{ color: "white", marginBottom: "0.5rem" }}
-                >
-                  {/* CORREÇÃO: Use os nomes corretos dos campos */}
-                  {denuncia.tipoGolpe} - (
-                  {new Date(denuncia.dataDenuncia).toLocaleDateString()})
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </div>
     </div>
   );
