@@ -112,6 +112,27 @@ const PixPage = () => {
             {verificationResult.message}
           </Alert>
         )}
+        <div className="denunciadas-container">
+          <h3 className="denunciadas-title">Minhas Chaves Denunciadas</h3>
+          {denuncias.length > 0 ? (
+            <List sx={{ backgroundColor: "white", borderRadius: 1 }}>
+              {denuncias.map((denuncia) => (
+                <ListItem key={denuncia.id}>
+                  <ListItemText
+                    primary={denuncia.chavePix}
+                    secondary={`Tipo: ${denuncia.tipoGolpe} - Data: ${new Date(
+                      denuncia.dataDenuncia
+                    ).toLocaleDateString()}`}
+                  />
+                </ListItem>
+              ))}
+            </List>
+          ) : (
+            <Typography sx={{ color: "white", textAlign: "center", mt: 2 }}>
+              Você ainda não registrou nenhuma denúncia.
+            </Typography>
+          )}
+        </div>
       </div>
     </div>
   );

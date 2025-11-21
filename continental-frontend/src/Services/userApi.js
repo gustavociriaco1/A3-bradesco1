@@ -61,3 +61,22 @@ export const registerDenuncia = async (denunciaData) => {
     throw error;
   }
 };
+export const getMinhasDenuncias = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error("Token não encontrado. Faça login para continuar.");
+    }
+
+    const response = await api.get("api/denuncias/minhas", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar minhas denúncias:", error);
+    throw error;
+  }
+};

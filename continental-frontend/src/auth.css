@@ -62,6 +62,13 @@
   color: rgba(38, 9, 143, 0.404);
 }
 .denunciadas-title {
-  color: var(--blue) !important;
-  margin-top: 1rem;
+  color: var(--white);
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.denunciadas-container {
+  width: 100%;
+  margin-top: 20px;
 }
