@@ -8,7 +8,6 @@ const PixPage = () => {
   const [pixKey, setPixKey] = useState("");
   const [verificationResult, setVerificationResult] = useState(null);
   const [denuncias, setDenuncias] = useState([]);
-
   const handleVerifyKey = async () => {
     if (!pixKey) {
       setVerificationResult({
@@ -22,25 +21,29 @@ const PixPage = () => {
       // Chama o back-end e a resposta já é a string que você precisa
       const result = await getPixKeyInfo(pixKey);
 
-      if (result === "CHAVE COM SUSPEITA DE FRAUDE") {
+      // Use .trim() para remover espaços em branco antes de comparar
+      const trimmedResult = typeof result === "string" ? result.trim() : "";
+
+      if (trimmedResult === "CHAVE COM SUSPEITA DE FRAUDE") {
         setVerificationResult({
           message: "Atenção: Esta chave PIX apresenta suspeita de fraude!",
           status: "error",
         });
-      } else if (result === "CHAVE SEM ANOMALIA") {
+      } else if (trimmedResult === "CHAVE SEM ANOMALIA") {
         setVerificationResult({
           message: "Esta chave PIX não possui anomalias registradas.",
           status: "success",
         });
-      } else if (result === "NENHUMA DENUNCIA ENCONTRADA") {
+      } else if (trimmedResult === "NENHUMA DENUNCIA ENCONTRADA") {
         setVerificationResult({
           message: "Nenhuma denúncia encontrada para esta chave PIX.",
           status: "success",
         });
       } else {
-        // Caso o backend retorne algo inesperado
+        // Adicione um console.log aqui para depurar o que está vindo do backend
+        console.log("Resposta recebida do servidor:", result);
         setVerificationResult({
-          message: "Resposta inesperada do servidor.",
+          message: "Resposta inesperada do servidor. Verifique o console.",
           status: "error",
         });
       }
