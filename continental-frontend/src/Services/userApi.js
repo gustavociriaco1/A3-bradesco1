@@ -27,25 +27,28 @@ export const register = async (userData) => {
  */
 
 /**
- * Busca informações de denúncias para uma chave PIX específica.
- * @param {string} key - A chave PIX a ser consultada.
- * @returns {Promise<object>} Um objeto contendo um array de denúncias.
+ * Busca informações de uma chave PIX na API.
+ * @param {string} chavePix - A chave PIX a ser consultada.
+ * @returns {Promise<object>} Os dados da resposta da API.
  */
 export const getPixKeyInfo = async (key) => {
   try {
     // A resposta da API (response.data) provavelmente é o array de denúncias diretamente.
     const denunciasArray = await api.get(`api/denuncias/chave/${key}`);
 
-    // Envelopamos o array em um objeto com a propriedade "denuncias",
-    // que é o que o componente PixPage espera.
-    return { denuncias: denunciasArray.data };
+    let denuncias = response.data;
+
+    // 🔥 Garante que SEMPRE seja array
+    if (!Array.isArray(denuncias)) {
+      denuncias = denuncias ? [denuncias] : [];
+    }
+
+    return { denuncias };
   } catch (error) {
-    // Se a API retornar um erro (ex: 404 Not Found), o catch no PixPage.jsx irá tratar.
     console.error("Erro ao buscar informações da chave PIX:", error);
-    throw error; // Relança o erro para ser tratado no componente.
+    throw error;
   }
 };
-
 /**
  * Registra denúncia (PRECISA DE TOKEN)
  */
