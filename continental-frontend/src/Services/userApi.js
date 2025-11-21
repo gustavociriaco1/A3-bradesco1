@@ -47,10 +47,7 @@ export const getPixKeyInfo = async (key) => {
  */
 export const registerDenuncia = async (denunciaData) => {
   try {
-    // Não é mais necessário adicionar o cabeçalho de autorização aqui.
-    // O interceptor em 'api.js' já faz isso automaticamente.
-    const response = await api.post("api/denuncias", denunciaData);
-
+    const response = await api.post("/api/denuncias", denunciaData);
     return response.data;
   } catch (error) {
     console.error("Erro ao registrar denúncia no serviço:", error);
