@@ -35,17 +35,13 @@ export const getPixKeyInfo = async (key) => {
   try {
     const response = await api.get(`api/denuncias/chave/${key}`);
 
-    // O backend retorna 1 para maliciosa e 0 para normal.
-    const isMalicious = response.data === 1;
+    // O backend retorna uma STRING.
+    const status = response.data;
 
-    return { malicious: isMalicious };
+    return { status };
   } catch (error) {
-    // Se a API retornar um erro (ex: 404), consideramos que a chave não tem denúncias.
-    if (error.response && error.response.status === 404) {
-      return { malicious: false }; // Chave não encontrada = não é maliciosa
-    }
     console.error("Erro ao buscar informações da chave PIX:", error);
-    throw error; // Propaga outros erros para serem tratados na UI
+    throw error;
   }
 };
 /**

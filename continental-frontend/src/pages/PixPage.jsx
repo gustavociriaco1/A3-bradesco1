@@ -19,26 +19,37 @@ const PixPage = () => {
     }
 
     try {
-      // Chama a função da API para verificar a chave
-      const data = await getPixKeyInfo(pixKey);
+      // Chama o back-end
+      const response = await getPixKeyInfo(pixKey);
 
-      if (data.malicious) {
-        // É maliciosa
+      const result = response.data; // resposta é uma STRING
+
+      if (result === "CHAVE COM SUSPEITA DE FRAUDE") {
         setVerificationResult({
-          message: "Atenção: Esta chave PIX é considerada maliciosa.",
+          message: "Atenção: Esta chave PIX apresenta suspeita de fraude!",
           status: "error",
         });
-      } else {
-        // Não é maliciosa
+      } else if (result === "CHAVE SEM ANOMALIA") {
+        setVerificationResult({
+          message: "Esta chave PIX não possui anomalias registradas.",
+          status: "success",
+        });
+      } else if (result === "NENHUMA DENUNCIA ENCONTRADA") {
         setVerificationResult({
           message: "Nenhuma denúncia encontrada para esta chave PIX.",
           status: "success",
+        });
+      } else {
+        // Caso o backend retorne algo inesperado
+        setVerificationResult({
+          message: "Resposta inesperada do servidor.",
+          status: "error",
         });
       }
     } catch (error) {
       console.error("Erro ao verificar chave PIX:", error);
       setVerificationResult({
-        message: "Chave PIX não encontrada ou inválida.",
+        message: "Erro ao consultar chave PIX.",
         status: "error",
       });
     }
