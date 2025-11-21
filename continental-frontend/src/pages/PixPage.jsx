@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField, Button, InputAdornment } from "@mui/material";
+import { TextField, Button, InputAdornment, Alert } from "@mui/material";
 import { FaSearch } from "react-icons/fa";
 import "../auth.css"; // Importa o CSS de autenticação
 import { getPixKeyInfo } from "../Services/userApi"; //
@@ -99,15 +99,12 @@ const PixPage = () => {
         </Button>
 
         {verificationResult && (
-          <div
-            style={{
-              marginTop: "1rem",
-              color: verificationResult.status === "error" ? "red" : "green",
-              textAlign: "center",
-            }}
+          <Alert
+            severity={verificationResult.status}
+            sx={{ mt: 2, justifyContent: "center" }}
           >
             {verificationResult.message}
-          </div>
+          </Alert>
         )}
       </div>
     </div>
