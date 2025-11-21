@@ -19,10 +19,8 @@ const PixPage = () => {
     }
 
     try {
-      // Chama o back-end
-      const response = await getPixKeyInfo(pixKey);
-
-      const result = response.data; // resposta é uma STRING
+      // Chama o back-end e a resposta já é a string que você precisa
+      const result = await getPixKeyInfo(pixKey);
 
       if (result === "CHAVE COM SUSPEITA DE FRAUDE") {
         setVerificationResult({
