@@ -199,7 +199,7 @@ const PixPage = () => {
               ))}
             </List>
           ) : (
-            <Typography sx={{ textAlign: "center", mt: 2 }}>
+            <Typography sx={{ textAlign: "center", mt: 2, color: "black" }}>
               Você ainda não registrou nenhuma denúncia.
             </Typography>
           )}
