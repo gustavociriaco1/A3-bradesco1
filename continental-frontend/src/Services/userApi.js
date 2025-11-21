@@ -36,9 +36,7 @@ export const getPixKeyInfo = async (key) => {
     const response = await api.get(`api/denuncias/chave/${key}`);
 
     // O backend retorna uma STRING.
-    const status = response.data;
-
-    return { status };
+    return response.data; // Retorna a string diretamente
   } catch (error) {
     console.error("Erro ao buscar informações da chave PIX:", error);
     throw error;
