@@ -33,7 +33,7 @@ export const register = async (userData) => {
  */
 export const getPixKeyInfo = async (key) => {
   try {
-    const response = await api.get(`api/denuncias/chave/${key}`);
+    const response = await api.get(`api/denuncias/chave/${chavePix}`);
 
     // O backend retorna uma STRING.
     const status = response.data;
