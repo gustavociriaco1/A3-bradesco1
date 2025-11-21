@@ -94,7 +94,7 @@ export const getDenunciaById = async (id) => {
 };
 export const updateDenuncia = async (id, denunciaData) => {
   const token = localStorage.getItem("token");
-  const response = await api.put(`/denuncias/${id}`, denunciaData, {
+  const response = await api.put(`/api/denuncias/${id}`, denunciaData, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
