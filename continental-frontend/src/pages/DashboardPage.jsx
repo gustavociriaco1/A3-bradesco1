@@ -14,7 +14,7 @@ const DashboardPage = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token"); // Limpa o token de autenticação
-    navigate("/login"); // Redireciona para a página de login
+    navigate("/"); // Redireciona para a página de login na rota raiz
   };
 
   return (
