@@ -9,7 +9,7 @@ const DenunciaPage = () => {
   const [bank, setBank] = useState("");
   const [description, setDescription] = useState("");
   const [amountLost, setAmountLost] = useState("");
-  const [dateOfIncident, setDateOfIncident] = useState("");
+
   const [Name, setName] = useState("");
 
   const handleSubmit = async (e) => {
@@ -22,8 +22,7 @@ const DenunciaPage = () => {
       nomeGolpista: Name,
       banco: bank,
       descricao: description,
-      valorPerdido: amountLost,
-      dataDenuncia: dateOfIncident,
+      valorPerdido: parseFloat(amountLost),
     };
 
     for (const key in reportData) {
@@ -44,7 +43,6 @@ const DenunciaPage = () => {
       setBank("");
       setDescription("");
       setAmountLost("");
-      setDateOfIncident("");
     } catch (error) {
       const errorMessage =
         error.response?.data?.message || "Falha ao registrar denúncia.";
@@ -131,21 +129,7 @@ const DenunciaPage = () => {
           onChange={(e) => setAmountLost(e.target.value)}
           sx={{ backgroundColor: "white", borderRadius: 1 }}
         />
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          type="date"
-          id="dateOfIncident"
-          placeholder="Data da Denúncia"
-          name="dateOfIncident"
-          value={dateOfIncident}
-          onChange={(e) => setDateOfIncident(e.target.value)}
-          sx={{ backgroundColor: "white", borderRadius: 1 }}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
+
         <Button
           fullWidth
           variant="contained"
