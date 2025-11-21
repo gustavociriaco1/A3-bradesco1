@@ -185,7 +185,7 @@ const PixPage = () => {
                         aria-label="delete"
                         onClick={() => handleDeleteDenuncia(denuncia.id)}
                       >
-                        <DeleteIcon />
+                        <DeleteIcon sx={{ color: "black" }} />
                       </IconButton>
                     </>
                   }
@@ -203,6 +203,17 @@ const PixPage = () => {
             </Typography>
           )}
         </div>
+        <Button
+          fullWidth
+          variant="outlined"
+          sx={{
+            mt: 3,
+            mb: 2,
+          }}
+          onClick={() => navigate("/dashboard")}
+        >
+          Voltar para o Dashboard
+        </Button>
       </div>
     </div>
   );

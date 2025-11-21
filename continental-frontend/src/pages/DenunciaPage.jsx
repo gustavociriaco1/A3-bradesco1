@@ -2,6 +2,7 @@ import { TextField, Button } from "@mui/material";
 import React, { useState } from "react";
 import "../auth.css";
 import { registerDenuncia } from "../Services/userApi";
+import { useNavigate } from "react-router-dom";
 
 const DenunciaPage = () => {
   const [scammerKey, setScammerKey] = useState("");
@@ -142,6 +143,17 @@ const DenunciaPage = () => {
           onClick={handleSubmit}
         >
           Registrar Denúncia
+        </Button>
+        <Button
+          fullWidth
+          variant="outlined"
+          sx={{
+            mt: 1,
+            mb: 2,
+          }}
+          onClick={() => navigate("/dashboard")}
+        >
+          Voltar para o Dashboard
         </Button>
       </div>
     </div>

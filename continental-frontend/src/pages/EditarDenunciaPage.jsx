@@ -187,6 +187,17 @@ const EditarDenunciaPage = () => {
         >
           Salvar Alterações
         </Button>
+        <Button
+          fullWidth
+          variant="outlined"
+          sx={{
+            mt: 1,
+            mb: 2,
+          }}
+          onClick={() => navigate("/dashboard")}
+        >
+          Voltar para o Dashboard
+        </Button>
       </div>
     </div>
   );
