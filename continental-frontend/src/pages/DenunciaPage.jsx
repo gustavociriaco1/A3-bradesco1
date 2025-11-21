@@ -24,6 +24,11 @@ const DenunciaPage = () => {
       descricao: description,
       valorPerdido: parseFloat(amountLost),
     };
+    // --- INÍCIO DA SEÇÃO DE LOG ---
+    console.log("--- DADOS QUE SERÃO ENVIADOS PARA O BACKEND ---");
+    console.log("Objeto completo:", reportData);
+    console.log("----------------------------------------------");
+    // --- FIM DA SEÇÃO DE LOG ---
 
     for (const key in reportData) {
       if (!reportData[key]) {

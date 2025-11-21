@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TextField,
   Button,
@@ -11,12 +11,26 @@ import {
 } from "@mui/material";
 import { FaSearch } from "react-icons/fa";
 import "../auth.css"; // Importa o CSS de autenticação
-import { getPixKeyInfo } from "../Services/userApi"; //
+import { getPixKeyInfo, getMinhasDenuncias } from "../Services/userApi"; //
 
 const PixPage = () => {
   const [pixKey, setPixKey] = useState("");
   const [verificationResult, setVerificationResult] = useState(null);
   const [denuncias, setDenuncias] = useState([]);
+  useEffect(() => {
+    const fetchMinhasDenuncias = async () => {
+      try {
+        const data = await getMinhasDenuncias();
+        setDenuncias(data);
+      } catch (error) {
+        console.error("Erro ao buscar as denúncias do usuário:", error);
+        // Opcional: você pode mostrar uma mensagem de erro para o usuário aqui
+      }
+    };
+
+    fetchMinhasDenuncias();
+  }, []); // O array vazio garante que isso rode apenas uma vez quando o componente montar
+
   const handleVerifyKey = async () => {
     if (!pixKey) {
       setVerificationResult({
