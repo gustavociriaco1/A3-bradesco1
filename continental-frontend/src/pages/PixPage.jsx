@@ -22,21 +22,18 @@ const PixPage = () => {
       // Chama a função da API para verificar a chave
       const data = await getPixKeyInfo(pixKey);
 
-      // Verifica se a chave possui denúncias
-      if (data.denuncias && data.denuncias.length > 0) {
-        // A chave é maliciosa
+      if (data.malicious) {
+        // É maliciosa
         setVerificationResult({
           message: "Atenção: Esta chave PIX é considerada maliciosa.",
-          status: "error", // 'error' para cor vermelha
+          status: "error",
         });
-        setDenuncias(data.denuncias);
       } else {
-        // A chave é válida, mas não tem denúncias
+        // Não é maliciosa
         setVerificationResult({
-          message: "Nenhuma denúncia encontrada para esta chave.",
-          status: "success", // 'success' para cor verde
+          message: "Nenhuma denúncia encontrada para esta chave PIX.",
+          status: "success",
         });
-        setDenuncias([]);
       }
     } catch (error) {
       console.error("Erro ao verificar chave PIX:", error);
@@ -44,7 +41,6 @@ const PixPage = () => {
         message: "Chave PIX não encontrada ou inválida.",
         status: "error",
       });
-      setDenuncias([]); // Limpa denúncias em caso de erro
     }
   };
 

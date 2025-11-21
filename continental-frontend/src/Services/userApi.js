@@ -33,20 +33,19 @@ export const register = async (userData) => {
  */
 export const getPixKeyInfo = async (key) => {
   try {
-    // A resposta da API (response.data) provavelmente é o array de denúncias diretamente.
-    const denunciasArray = await api.get(`api/denuncias/chave/${key}`);
+    const response = await api.get(`api/denuncias/chave/${key}`);
 
-    let denuncias = denunciasArray.data;
+    // O backend retorna 1 para maliciosa e 0 para normal.
+    const isMalicious = response.data === 1;
 
-    // 🔥 Garante que SEMPRE seja array
-    if (!Array.isArray(denuncias)) {
-      denuncias = denuncias ? [denuncias] : [];
-    }
-
-    return { denuncias };
+    return { malicious: isMalicious };
   } catch (error) {
+    // Se a API retornar um erro (ex: 404), consideramos que a chave não tem denúncias.
+    if (error.response && error.response.status === 404) {
+      return { malicious: false }; // Chave não encontrada = não é maliciosa
+    }
     console.error("Erro ao buscar informações da chave PIX:", error);
-    throw error;
+    throw error; // Propaga outros erros para serem tratados na UI
   }
 };
 /**
