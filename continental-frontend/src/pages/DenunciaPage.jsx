@@ -5,6 +5,8 @@ import { registerDenuncia } from "../Services/userApi";
 import { useNavigate } from "react-router-dom";
 
 const DenunciaPage = () => {
+  const navigate = useNavigate();
+
   const [scammerKey, setScammerKey] = useState("");
   const [scamType, setScamType] = useState("");
   const [bank, setBank] = useState("");

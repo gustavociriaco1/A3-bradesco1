@@ -24,6 +24,7 @@ const PixPage = () => {
   const [pixKey, setPixKey] = useState("");
   const [verificationResult, setVerificationResult] = useState(null);
   const [denuncias, setDenuncias] = useState([]);
+
   const navigate = useNavigate(); // Inicialize o hook
 
   useEffect(() => {
