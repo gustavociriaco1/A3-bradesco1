@@ -49,7 +49,7 @@ const DashboardPage = () => {
             <div className="circle">
               <PixIcon sx={{ fontSize: 32 }} />
             </div>
-            <p>Área PIX</p>
+            <p>Consulta PIX</p>
           </div>
 
           <div className="action-item" onClick={() => navigate("/denuncia")}>
