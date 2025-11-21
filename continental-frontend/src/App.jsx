@@ -4,6 +4,7 @@ import RegisterPage from "./pages/RegisterPage";
 import DashboardPage from "./pages/DashboardPage";
 import PixPage from "./pages/PixPage";
 import DenunciaPage from "./pages/DenunciaPage"; // CORREÇÃO: O nome do arquivo é DenunciaPage
+import EditarDenunciaPage from "./pages/EditarDenunciaPage"; // Adiciona a página de edição de denúncia
 import "./styles.css";
 
 export default function App() {
@@ -14,8 +15,8 @@ export default function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/pix" element={<PixPage />} />
-        <Route path="/denuncia" element={<DenunciaPage />} /> {/* Adiciona a nova rota */}
-
+        <Route path="/denuncia/editar/:id" element={<EditarDenunciaPage />} />
+        <Route path="/denuncia" element={<DenunciaPage />} />{" "}
       </Routes>
     </BrowserRouter>
   );

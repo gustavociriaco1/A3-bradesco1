@@ -12,11 +12,14 @@ import {
 import { FaSearch } from "react-icons/fa";
 import "../auth.css"; // Importa o CSS de autenticação
 import { getPixKeyInfo, getMinhasDenuncias } from "../Services/userApi"; //
+import { useNavigate } from "react-router-dom"; // Importe o useNavigate
 
 const PixPage = () => {
   const [pixKey, setPixKey] = useState("");
   const [verificationResult, setVerificationResult] = useState(null);
   const [denuncias, setDenuncias] = useState([]);
+  const navigate = useNavigate(); // Inicialize o hook
+
   useEffect(() => {
     const fetchMinhasDenuncias = async () => {
       try {
@@ -77,6 +80,10 @@ const PixPage = () => {
         status: "error",
       });
     }
+  };
+  // Função para navegar para a página de edição
+  const handleAlterarDenuncia = (id) => {
+    navigate(`/denuncia/editar/${id}`);
   };
 
   return (
@@ -140,7 +147,18 @@ const PixPage = () => {
           {denuncias.length > 0 ? (
             <List sx={{ backgroundColor: "white", borderRadius: 1 }}>
               {denuncias.map((denuncia) => (
-                <ListItem key={denuncia.id}>
+                <ListItem
+                  key={denuncia.id}
+                  secondaryAction={
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      onClick={() => handleAlterarDenuncia(denuncia.id)}
+                    >
+                      Alterar
+                    </Button>
+                  }
+                >
                   <ListItemText
                     primary={denuncia.chavePix}
                     secondary={`Tipo: ${denuncia.tipoGolpe} - Data: ${new Date(

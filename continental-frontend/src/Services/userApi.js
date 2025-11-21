@@ -73,3 +73,31 @@ export const getMinhasDenuncias = async () => {
     throw error;
   }
 };
+export const getDenunciaById = async (id) => {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error("Token não encontrado. Faça login para continuar.");
+    }
+
+    const response = await api.get(`api/denuncias/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar denúncia por ID:", error);
+    throw error;
+  }
+};
+export const updateDenuncia = async (id, denunciaData) => {
+  const token = localStorage.getItem("token");
+  const response = await api.put(`/denuncias/${id}`, denunciaData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
