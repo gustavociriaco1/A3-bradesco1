@@ -102,8 +102,8 @@ const PixPage = () => {
           </div>
         )}
 
-        {denuncias.length > 0 && (
-          <div className="denuncias-list">
+        {denuncias && denuncias.length > 0 && (
+          <div>
             <h3 className="denunciadas-title">Detalhes das Denúncias:</h3>
             <ul>
               {denuncias.map((denuncia, index) => (
@@ -111,8 +111,9 @@ const PixPage = () => {
                   key={index}
                   style={{ color: "white", marginBottom: "0.5rem" }}
                 >
-                  {denuncia.motivo} - (
-                  {new Date(denuncia.data).toLocaleDateString()})
+                  {/* CORREÇÃO: Use os nomes corretos dos campos */}
+                  {denuncia.tipoGolpe} - (
+                  {new Date(denuncia.dataDenuncia).toLocaleDateString()})
                 </li>
               ))}
             </ul>
