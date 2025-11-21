@@ -101,7 +101,13 @@ const PixPage = () => {
         {verificationResult && (
           <Alert
             severity={verificationResult.status}
-            sx={{ mt: 2, justifyContent: "center", color: "black" }}
+            sx={{
+              mt: 2,
+              justifyContent: "center",
+              "& .MuiAlert-message": {
+                color: "black",
+              },
+            }}
           >
             {verificationResult.message}
           </Alert>
