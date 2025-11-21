@@ -8,11 +8,17 @@ import {
   ListItem,
   ListItemText,
   Typography,
+  IconButton,
 } from "@mui/material";
 import { FaSearch } from "react-icons/fa";
 import "../auth.css"; // Importa o CSS de autenticação
-import { getPixKeyInfo, getMinhasDenuncias } from "../Services/userApi"; //
+import {
+  getPixKeyInfo,
+  getMinhasDenuncias,
+  deleteDenuncia,
+} from "../Services/userApi"; //
 import { useNavigate } from "react-router-dom"; // Importe o useNavigate
+import DeleteIcon from "@mui/icons-material/Delete"; // 2. Importe o ícone de lixeira
 
 const PixPage = () => {
   const [pixKey, setPixKey] = useState("");
@@ -33,6 +39,20 @@ const PixPage = () => {
 
     fetchMinhasDenuncias();
   }, []); // O array vazio garante que isso rode apenas uma vez quando o componente montar
+
+  // 4. Adicione a função para lidar com a exclusão
+  const handleDeleteDenuncia = async (id) => {
+    if (window.confirm("Tem certeza que deseja excluir esta denúncia?")) {
+      try {
+        await deleteDenuncia(id);
+        setDenuncias(denuncias.filter((d) => d.id !== id)); // Remove da lista na UI
+        alert("Denúncia excluída com sucesso!");
+      } catch (error) {
+        console.error("Erro ao excluir denúncia:", error);
+        alert("Falha ao excluir denúncia. Tente novamente.");
+      }
+    }
+  };
 
   const handleVerifyKey = async () => {
     if (!pixKey) {
@@ -150,26 +170,35 @@ const PixPage = () => {
                 <ListItem
                   key={denuncia.id}
                   secondaryAction={
-                    <Button
-                      variant="outlined"
-                      size="small"
-                      onClick={() => handleAlterarDenuncia(denuncia.id)}
-                    >
-                      Alterar
-                    </Button>
+                    // 5. Agrupe os botões
+                    <>
+                      <Button
+                        variant="outlined"
+                        size="small"
+                        onClick={() => handleAlterarDenuncia(denuncia.id)}
+                        sx={{ mr: 1 }} // Adiciona margem para separar os botões
+                      >
+                        Alterar
+                      </Button>
+                      <IconButton
+                        edge="end"
+                        aria-label="delete"
+                        onClick={() => handleDeleteDenuncia(denuncia.id)}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </>
                   }
                 >
                   <ListItemText
                     primary={denuncia.chavePix}
-                    secondary={`Tipo: ${denuncia.tipoGolpe} - Data: ${new Date(
-                      denuncia.dataDenuncia
-                    ).toLocaleDateString()}`}
+                    secondary={`Golpe: ${denuncia.tipoGolpe} - Valor: R$ ${denuncia.valorPerdido}`}
                   />
                 </ListItem>
               ))}
             </List>
           ) : (
-            <Typography sx={{ color: "white", textAlign: "center", mt: 2 }}>
+            <Typography sx={{ textAlign: "center", mt: 2 }}>
               Você ainda não registrou nenhuma denúncia.
             </Typography>
           )}

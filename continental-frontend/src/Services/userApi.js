@@ -101,3 +101,23 @@ export const updateDenuncia = async (id, denunciaData) => {
   });
   return response.data;
 };
+export const deleteDenuncia = async (id) => {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error("Token não encontrado. Faça login para continuar.");
+    }
+
+    // Usando a rota que você especificou: api/denuncias/remove/{id}
+    const response = await api.delete(`api/denuncias/remove/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao excluir denúncia:", error);
+    throw error;
+  }
+};
