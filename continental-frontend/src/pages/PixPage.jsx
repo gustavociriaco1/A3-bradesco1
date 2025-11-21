@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { TextField, Button, InputAdornment, Alert } from "@mui/material";
+import {
+  TextField,
+  Button,
+  InputAdornment,
+  Alert,
+  Typography,
+} from "@mui/material";
 import { FaSearch } from "react-icons/fa";
 import "../auth.css"; // Importa o CSS de autenticação
 import { getPixKeyInfo } from "../Services/userApi"; //
