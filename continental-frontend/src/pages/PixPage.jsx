@@ -26,7 +26,7 @@ const PixPage = () => {
       if (data.denuncias && data.denuncias.length > 0) {
         // A chave é maliciosa
         setVerificationResult({
-          message: `Atenção: Esta chave PIX é maliciosa e possui ${data.denuncias.length} denúncia(s).`,
+          message: "Atenção: Esta chave PIX é considerada maliciosa.",
           status: "error", // 'error' para cor vermelha
         });
         setDenuncias(data.denuncias);
