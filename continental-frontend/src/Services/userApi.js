@@ -36,7 +36,7 @@ export const getPixKeyInfo = async (key) => {
     // A resposta da API (response.data) provavelmente é o array de denúncias diretamente.
     const denunciasArray = await api.get(`api/denuncias/chave/${key}`);
 
-    let denuncias = response.data;
+    let denuncias = denunciasArray.data;
 
     // 🔥 Garante que SEMPRE seja array
     if (!Array.isArray(denuncias)) {
