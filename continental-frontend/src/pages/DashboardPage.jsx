@@ -13,8 +13,8 @@ const DashboardPage = () => {
   const saldo = "R$ 12.345,67";
 
   const handleLogout = () => {
-    // Adicionar lógica de logout aqui (ex: limpar token)
-    navigate("/login");
+    localStorage.removeItem("token"); // Limpa o token de autenticação
+    navigate("/login"); // Redireciona para a página de login
   };
 
   return (
